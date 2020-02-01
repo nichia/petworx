@@ -1,17 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
+import SearchPetworxForm from '../components/SearchPetworxForm';
 
-export default class PetworxListContainer extends Component {
+class PetworxListContainer extends Component {
   state = {
     petworxList: []
   }
 
   componentDidMount() {
+    console.log("%ccomponentDidMount()", "color:purple;")
     this.fetchYelpApi()
   }
 
-  fetchYelpApi() {
-    const url = `https://api.yelp.com/v3/businesses/search?term=pet_services&location=${33611}&limit=20`
+  fetchYelpApi = (zipcode) => {
+    const url = `https://api.yelp.com/v3/businesses/search?term=pet_services&location=${zipcode}&limit=20`
     const proxyurl = "https://cors-anywhere.herokuapp.com/"
     axios.get(proxyurl + url, {
       headers: {
@@ -21,8 +23,8 @@ export default class PetworxListContainer extends Component {
     .then((res) => {
       console.log("res:", res);
       let petworx = []
-      res.data.businesses.map((pet) => (
-        petworx.push(pet)
+      res.data.businesses.map((business) => (
+        petworx.push(business)
       ))
       this.setState({
         petworxList: petworx
@@ -34,14 +36,19 @@ export default class PetworxListContainer extends Component {
   }
 
   render() {
+    console.log("%crender()", "color:green;")
+
     return (
       <div>
         To Do - NavBar
         <br />
         To Do - SearchPetworx
+        <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} />
         <br />
         To Do - ListPetworx
       </div>
     )
   }
 }
+
+export default PetworxListContainer
