@@ -1,35 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import {Button, Container, Form} from 'reactstrap';
 
-class SearchPetworxForm extends Component {
+const SearchPetworxForm = (props) => {
+ 
+  const [zipcode, setZipcode] = useState('');
 
-  state = {
-    zipcode: ''
-  }
-
-  handleSubmit = event => {
+  const handleSubmit = event => {
     event.preventDefault()
-    this.props.fetchYelpApi(this.state.zipcode)
+    props.fetchYelpApi(zipcode)
   }
 
-  onChange = event => {
-    this.setState({
+  const onChange = event => {
+    setZipcode({
       [event.target.name]: event.target.value
     })
   }
 
-  render() {
-    return (
-      <>
-        <Container><h1>Find a pet service near you.</h1></Container>
-        <Container>
-          <Form onSubmit={this.handleSubmit}>
-            <input type="text" placeholder="Search by zipcode" name="zipcode" onChange={this.onChange} required />        
-            <Button type="submit" value="Search">Search</Button>             
-          </Form>
-        </Container>
-      </>
-    )
-  }
+  return (
+    <>
+      <Container><h1>Find a pet service near you.</h1></Container>
+      <Container>
+        <Form onSubmit={handleSubmit}>
+          <input type="text" placeholder="Search by zipcode" name="zipcode" onChange={onChange} required />        
+          <Button type="submit" value="Search">Search</Button>             
+        </Form>
+      </Container>
+    </>
+  )
 }
 export default SearchPetworxForm

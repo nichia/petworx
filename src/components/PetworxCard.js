@@ -2,9 +2,11 @@ import React from 'react';
 import noImage from '../no-image.jpg';
 import { Button, Card, CardBody, CardDeck, CardImg, CardLink, CardSubtitle, CardText, CardTitle } from 'reactstrap'
 
-function PetworxCard(props) {
+const PetworxCard = (props) => {
   console.log("%c PetworxCard", "color:orange;", props)
+
   const image_url = props.petworx.image_url ? props.petworx.image_url : noImage
+  
   return (
     <CardDeck className="col-md-5 col-lg-4" >
       <Card className="card">

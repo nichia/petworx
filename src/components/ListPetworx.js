@@ -1,7 +1,7 @@
 import React from 'react';
 import PetworxCard from './PetworxCard';
 
-function ListPetworx(props) {
+const ListPetworx = (props) => {
   console.log("%c ListPetworx", "color:green;", props)
 
   const renderPetworxList = () => {
