@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import SearchPetworxForm from '../components/SearchPetworxForm';
+import ListPetworx from '../components/ListPetworx';
 
 class PetworxListContainer extends Component {
   state = {
@@ -42,10 +43,9 @@ class PetworxListContainer extends Component {
       <div>
         To Do - NavBar
         <br />
-        To Do - SearchPetworx
         <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} />
         <br />
-        To Do - ListPetworx
+        <ListPetworx petworxList={this.state.petworxList} />
       </div>
     )
   }
