@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import NavBar from '../components/NavBar';
 import SearchPetworxForm from '../components/SearchPetworxForm';
 import ListPetworx from '../components/ListPetworx';
 
@@ -41,7 +42,7 @@ class PetworxListContainer extends Component {
 
     return (
       <div>
-        To Do - NavBar
+        <NavBar />
         <br />
         <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} />
         <br />
