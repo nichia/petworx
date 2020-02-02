@@ -10,7 +10,7 @@ const NavBar = () => {
     <div>
       <Navbar color="light" light expand="md" style={{ height: '6rem' }}>
         <NavbarBrand href="/">PetWorx</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+        {/* <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
             <NavItem>
@@ -20,7 +20,7 @@ const NavBar = () => {
               <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
             </NavItem>
           </Nav>
-        </Collapse>
+        </Collapse> */}
       </Navbar>
     </div>
   );

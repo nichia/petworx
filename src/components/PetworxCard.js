@@ -16,7 +16,7 @@ const PetworxCard = (props) => {
           <CardSubtitle>{props.petworx.location.address1}</CardSubtitle>
           <CardText>{props.petworx.location.city}, {props.petworx.location.state}</CardText>
           <CardText>{props.petworx.display_phone}</CardText>
-          <Button className="btn-block" >
+          <Button className="btn-block">
             <CardLink target="_blank" href={props.petworx.url} style={{ color: '#000' }}> Learn More </CardLink>
           </Button>
         </CardBody>
