@@ -1,5 +1,5 @@
-import React, {useState} from 'react'
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink } from 'reactstrap'
+import React, { useState } from 'react';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, NavLink } from 'reactstrap';
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -8,7 +8,7 @@ const NavBar = () => {
 
   return (
     <div>
-      <Navbar color="light" light expand="md">
+      <Navbar color="light" light expand="md" style={{ height: '6rem' }}>
         <NavbarBrand href="/">PetWorx</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
@@ -26,4 +26,4 @@ const NavBar = () => {
   );
 }
 
-export default NavBar
+export default NavBar;
