@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Geolocation from './Geolocation';
 import { Button, Container, Form, FormGroup } from 'reactstrap';
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
@@ -14,14 +15,14 @@ const SearchPetworxForm = (props) => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.fetchYelpApi(zipcode, searchTerm);
+    props.fetchYelpApi(searchTerm, zipcode);
   }
  
   const onDropdownClick = event => {
     const newSearchTerm = event.currentTarget.getAttribute("dropdownvalue");
 
     setSearchTerm(newSearchTerm);
-    props.fetchYelpApi(zipcode, newSearchTerm);
+    props.fetchYelpApi(newSearchTerm. zipcode);
   }
   
   return (
@@ -67,7 +68,8 @@ const SearchPetworxForm = (props) => {
               required 
             />
           </FormGroup>
-          <Button type="submit" value="Search">Search</Button>          
+          <Geolocation searchTerm={searchTerm} fetchGeolocationYelpApi={props.fetchGeolocationYelpApi}/>
+          <Button type="submit" value="Search">Search</Button>    
         </Form>
       </Container>
     </>

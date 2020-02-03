@@ -11,11 +11,38 @@ class PetworxListContainer extends Component {
 
   componentDidMount() {
     console.log("%ccomponentDidMount()", "color:purple;");
-    this.fetchYelpApi();
+    this.fetchYelpApi('dog parks');
   }
 
-  fetchYelpApi = (zipcode, searchTerm) => {
+  fetchYelpApi = (searchTerm, zipcode) => {
+    console.log("%cFETCHyelpAPI()", "color:purple;", searchTerm, zipcode);
+
     const url = `https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${zipcode}&limit=20`;
+    const proxyurl = "https://cors-anywhere.herokuapp.com/";
+    axios.get(proxyurl + url, {
+      headers: {
+        Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
+      }
+    })
+    .then((res) => {
+      console.log("res:", res);
+      let petworx = [];
+      res.data.businesses.map((business) => (
+        petworx.push(business)
+      ));
+      this.setState({
+        petworxList: petworx
+      });
+    })
+    .catch((err) => {
+      console.log( 'error:', err );
+    })
+  }
+
+  fetchGeolocationYelpApi = (searchTerm, latitude, longitude) => {
+    console.log("%cGEOLOCATION()", "color:purple;", searchTerm, latitude, longitude);
+
+    const url = `https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${latitude}&longitude=${longitude}`;
     const proxyurl = "https://cors-anywhere.herokuapp.com/";
     axios.get(proxyurl + url, {
       headers: {
@@ -43,9 +70,7 @@ class PetworxListContainer extends Component {
     return (
       <div>
         <NavBar />
-        <br />
-        <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} />
-        <br />
+        <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} fetchGeolocationYelpApi={this.fetchGeolocationYelpApi} />
         <ListPetworx petworxList={this.state.petworxList} />
       </div>
     )
