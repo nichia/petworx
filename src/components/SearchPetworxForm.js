@@ -22,7 +22,7 @@ const SearchPetworxForm = (props) => {
     const newSearchTerm = event.currentTarget.getAttribute("dropdownvalue");
 
     setSearchTerm(newSearchTerm);
-    props.fetchYelpApi(newSearchTerm. zipcode);
+    props.fetchYelpApi(newSearchTerm, zipcode);
   }
   
   return (
@@ -37,22 +37,22 @@ const SearchPetworxForm = (props) => {
               </DropdownToggle>
               <DropdownMenu>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="dog parks"
+                  onClick={onDropdownClick} dropdownvalue="dog parks"
                 >dog parks</DropdownItem>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="pet stores"
+                  onClick={onDropdownClick} dropdownvalue="pet stores"
                 >pet stores</DropdownItem>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="pet groomers"
+                  onClick={onDropdownClick} dropdownvalue="pet groomers"
                 >pet groomers</DropdownItem>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="pet services"
+                  onClick={onDropdownClick} dropdownvalue="pet services"
                 >pet services</DropdownItem>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="animal shelters"
+                  onClick={onDropdownClick} dropdownvalue="animal shelters"
                 >animal shelters</DropdownItem>
                 <DropdownItem
-                  onClick={onDropdownClick} dropDownValue="animal hospital"
+                  onClick={onDropdownClick} dropdownvalue="animal hospital"
                 >animal hospital</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>

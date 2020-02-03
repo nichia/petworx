@@ -17,7 +17,7 @@ class Geolocation extends React.Component {
     ) : !this.props.isGeolocationEnabled ? (
       <div>Geolocation is not enabled</div>
     ) : this.props.coords ? (
-      <Button className="btn-arrow" outline color="white" size="lg"><img src={pointerImage} onClick={this.handleClick} /></Button> 
+      <Button className="btn-arrow" outline color="white" size="lg"><img src={pointerImage} alt="Geoloaction pointer" onClick={this.handleClick} /></Button> 
     ) : (
       <div>Getting the location data&hellip;</div>
     );
