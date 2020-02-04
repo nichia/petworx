@@ -1,7 +1,6 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
 import noImage from '../assets/no-image.jpg';
-
 import { Button, Card, CardBody, CardDeck, CardImg, CardLink, CardSubtitle, CardText, CardTitle } from 'reactstrap'
 
 const PetworxCard = (props) => {

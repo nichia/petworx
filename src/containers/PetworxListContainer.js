@@ -6,7 +6,8 @@ import ListPetworx from '../components/ListPetworx';
 
 class PetworxListContainer extends Component {
   state = {
-    petworxList: []
+    petworxList: [],
+    loading: true
   }
 
   componentDidMount() {
@@ -14,64 +15,57 @@ class PetworxListContainer extends Component {
     this.fetchYelpApi('dog parks');
   }
 
-  fetchYelpApi = (searchTerm, zipcode) => {
-    console.log("%cFETCHyelpAPI()", "color:purple;", searchTerm, zipcode);
+  fetchApi = (url) => {
+    this.setState({loading: true}, () => {
+      console.log("%cFETCHyelpAPI()", "color:purple;", url, this.state);
 
-    const url = `https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${zipcode}&limit=20`;
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    axios.get(proxyurl + url, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-      }
-    })
-    .then((res) => {
-      console.log("res:", res);
-      let petworx = [];
-      res.data.businesses.map((business) => (
-        petworx.push(business)
-      ));
-      this.setState({
-        petworxList: petworx
-      });
-    })
-    .catch((err) => {
-      console.log( 'error:', err );
-    })
+      const proxyurl = "https://cors-anywhere.herokuapp.com/";
+      axios.get(proxyurl + url, {
+        headers: {
+          Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
+        }
+      })
+      .then((res) => {
+        console.log("res:", res, this.state);
+        let petworx = [];
+        res.data.businesses.map((business) => (
+          petworx.push(business)
+        ));
+        this.setState({
+          petworxList: petworx,
+          loading: false
+        });
+      })
+      .catch((err) => {
+        console.log( 'error:', err );
+      })
+    });
   }
 
-  fetchGeolocationYelpApi = (searchTerm, latitude, longitude) => {
+  fetchYelpApi = (searchTerm, zipcode) => {
+    console.log("%cZIPCODE()", "color:purple;", searchTerm, zipcode);
+
+    const url = `https://api.yelp.com/v3/businesses/search?term=${searchTerm}&location=${zipcode}&limit=50`;
+
+    this.fetchApi(url);
+  }
+
+  fetchByGeolocation = (searchTerm, latitude, longitude) => {
     console.log("%cGEOLOCATION()", "color:purple;", searchTerm, latitude, longitude);
 
     const url = `https://api.yelp.com/v3/businesses/search?term=${searchTerm}&latitude=${latitude}&longitude=${longitude}`;
-    const proxyurl = "https://cors-anywhere.herokuapp.com/";
-    axios.get(proxyurl + url, {
-      headers: {
-        Authorization: `Bearer ${process.env.REACT_APP_YELP_API_KEY}`
-      }
-    })
-    .then((res) => {
-      console.log("res:", res);
-      let petworx = [];
-      res.data.businesses.map((business) => (
-        petworx.push(business)
-      ));
-      this.setState({
-        petworxList: petworx
-      });
-    })
-    .catch((err) => {
-      console.log( 'error:', err );
-    })
+
+    this.fetchApi(url);
   }
 
   render() {
-    console.log("%crender()", "color:green;");
+    console.log("%crender()", "color:green;", this.state.loading);
 
     return (
       <div>
         <NavBar />
-        <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} fetchGeolocationYelpApi={this.fetchGeolocationYelpApi} />
-        <ListPetworx petworxList={this.state.petworxList} />
+        <SearchPetworxForm fetchYelpApi={this.fetchYelpApi} fetchGeolocationYelpApi={this.fetchByGeolocation} />
+        <ListPetworx petworxList={this.state.petworxList} isLoading={this.state.loading}/>
       </div>
     )
   }

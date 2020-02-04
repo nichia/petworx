@@ -59,8 +59,8 @@ const SearchPetworxForm = (props) => {
           </FormGroup>
           <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
             <input
-              type="text" 
-              placeholder="Search by zipcode" 
+              type="search" 
+              placeholder="Search by zipcode, state or city" 
               name="zipcode" 
               onChange={event => {
                 setZipcode(event.target.value); 
