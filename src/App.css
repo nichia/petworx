@@ -54,3 +54,7 @@
 .card:hover {
   box-shadow: 0 13px 15px -1px rgba(0,0,0,0.1), 0 4px 6px -3px #0c8672;
 }
+
+.btn-arrow:hover {
+  box-shadow: 0 13px 15px -1px rgba(0,0,0,0.1), 0 4px 6px -3px #0c8672;
+}
