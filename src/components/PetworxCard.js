@@ -22,7 +22,8 @@ const PetworxCard = (props) => {
               starDimension="25px"
               starSpacing="5px"
               name="hello"
-            />  {props.petworx.review_count}
+            /> <br></br>
+            {props.petworx.review_count} Reviews
           </CardText>
           <CardSubtitle>{props.petworx.location.address1}</CardSubtitle>
           <CardText>{props.petworx.location.city}, {props.petworx.location.state}</CardText>
