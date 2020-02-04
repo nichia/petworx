@@ -1,5 +1,7 @@
 import React from 'react';
+import StarRatings from 'react-star-ratings';
 import noImage from '../assets/no-image.jpg';
+
 import { Button, Card, CardBody, CardDeck, CardImg, CardLink, CardSubtitle, CardText, CardTitle } from 'reactstrap'
 
 const PetworxCard = (props) => {
@@ -13,6 +15,15 @@ const PetworxCard = (props) => {
         <CardImg top width="100%" className="card-img-top" src={image_url} alt={`Petworx ${props.petworx.name}`} />
         <CardBody>
           <CardTitle>{props.petworx.name}</CardTitle>
+          <CardText>
+            <StarRatings 
+              rating={props.petworx.rating}
+              starRatedColor="red"
+              starDimension="25px"
+              starSpacing="5px"
+              name="hello"
+            />  {props.petworx.review_count}
+          </CardText>
           <CardSubtitle>{props.petworx.location.address1}</CardSubtitle>
           <CardText>{props.petworx.location.city}, {props.petworx.location.state}</CardText>
           <CardText>{props.petworx.display_phone}</CardText>
