@@ -20,9 +20,11 @@ const SearchPetworxForm = (props) => {
  
   const onDropdownClick = event => {
     const newSearchTerm = event.currentTarget.getAttribute("dropdownvalue");
-
     setSearchTerm(newSearchTerm);
-    props.fetchYelpApi(newSearchTerm, zipcode);
+
+    if (zipcode != '') {
+      props.fetchYelpApi(newSearchTerm, zipcode);
+    }
   }
   
   return (
